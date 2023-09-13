@@ -426,7 +426,7 @@ export default function ProductList() {
               </div>
             </div>
           </section>
-                      <Pagination />
+          <Pagination />
         </main>
       </div>
     </div>
