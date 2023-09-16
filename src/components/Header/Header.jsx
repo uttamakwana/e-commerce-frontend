@@ -1,10 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Cart } from "../../containers";
 
 const user = {
   name: "Tom Cook",
@@ -30,6 +31,7 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
   return (
     <>
       <div className="min-h-full">
@@ -70,6 +72,10 @@ export default function Header() {
                     <div className="ml-4 flex items-center md:ml-6">
                       <button
                         type="button"
+                        onClick={() => {
+                          console.log("Hello");
+                          setOpen(true);
+                        }}
                         className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="absolute -inset-1.5" />
@@ -186,6 +192,10 @@ export default function Header() {
                     <button
                       type="button"
                       className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      onClick={() => {
+                        console.log("Hello");
+                        setOpen(true);
+                      }}
                     >
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">View notifications</span>
@@ -229,6 +239,7 @@ export default function Header() {
           </div>
         </main>
       </div>
+      <Cart open={open} setOpen={setOpen} />
     </>
   );
 }
