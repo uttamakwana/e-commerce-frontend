@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, useLocation } from "react-router-dom";
 
 const products = [
   {
@@ -30,7 +31,9 @@ const products = [
   // More products...
 ];
 
-export default function Cart({open, setOpen}) {
+export default function Cart({ open, setOpen }) {
+  const location = useLocation();
+  console.log(location.pathname);
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -147,12 +150,15 @@ export default function Cart({open, setOpen}) {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <a
-                          href="#"
+                        <Link
+                          to="/checkout"
+                          onClick={() => {
+                            if (location.pathname === "/checkout") {
+                              setOpen(false);
+                            }
+                          }}
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                        >
-                          Checkout
-                        </a>
+                        ></Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
